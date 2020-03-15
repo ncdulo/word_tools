@@ -4,7 +4,7 @@ import requests
 def lookup(word, limit=0):
     '''
     Return a list of definitions of 'word' from UrbanDictionary,
-    up to 'limit' results returned. Default 'limit' of 0 returns
+    up to 'limit' results returned. A limit <= 0 will return
     all results.
 
     Raises exception through 'requests' upon HTTP-related errors.
@@ -23,9 +23,13 @@ def lookup(word, limit=0):
 
     # Make some soup, look for meaning within ourself.
     soup = BeautifulSoup(response.text, 'html.parser')
+    results = soup.find_all('div', class_='meaning')
 
-    # TODO: Limit does not work when set to 0
-    for index,meaning in enumerate(soup.find_all('div', class_='meaning')):
+    # If limit is not a positive integer, return everything
+    if limit <= 0:
+        limit = len(results)
+
+    for index,meaning in enumerate(results):
         if index >= limit:
             break
         result.append(meaning.get_text())
@@ -36,6 +40,9 @@ def lookup(word, limit=0):
 if __name__ == '__main__':
     urbanize_me = lookup('python', 3)
 
+    total = len(urbanize_me)
     for meaning in urbanize_me:
         print(meaning)
         print(' - - - -')
+
+    print(f'Returned {total} results')
