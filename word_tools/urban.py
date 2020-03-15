@@ -25,6 +25,9 @@ def lookup(word, limit=0):
     soup = BeautifulSoup(response.text, 'html.parser')
     results = soup.find_all('div', class_='meaning')
 
+    # TODO: The below can be greatly cleaned up, I feel. Try using
+    # list slicing along with the limit to eliminate that for loop
+
     # If limit is not a positive integer, return everything
     if limit <= 0:
         limit = len(results)
