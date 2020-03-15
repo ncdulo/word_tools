@@ -4,8 +4,9 @@ import requests
 def lookup(word, limit=0):
     '''
     Return a list of definitions of 'word' from UrbanDictionary,
-    up to 'limit' results returned. A limit <= 0 will return
-    all results.
+    up to 'limit' results returned. A limit of 0 will return all
+    results, a negative limit will return the top single result,
+    any other positive integer will return up to that many results.
 
     Raises exception through 'requests' upon HTTP-related errors.
     TODO: Document which exceptions
@@ -23,25 +24,14 @@ def lookup(word, limit=0):
 
     # Make some soup, look for meaning within ourself.
     soup = BeautifulSoup(response.text, 'html.parser')
-    results = soup.find_all('div', class_='meaning')
-
-    # TODO: The below can be greatly cleaned up, I feel. Try using
-    # list slicing along with the limit to eliminate that for loop
-
-    # If limit is not a positive integer, return everything
-    if limit <= 0:
-        limit = len(results)
-
-    for index,meaning in enumerate(results):
-        if index >= limit:
-            break
+    for meaning in soup.find_all('div', class_='meaning', limit=limit):
         result.append(meaning.get_text())
 
     return result
 
 
 if __name__ == '__main__':
-    urbanize_me = lookup('python', 3)
+    urbanize_me = lookup('python', 4)
 
     total = len(urbanize_me)
     for meaning in urbanize_me:
