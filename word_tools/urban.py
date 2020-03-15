@@ -23,7 +23,6 @@ def lookup(word, limit=0):
 
     # Make some soup, look for meaning within ourself.
     soup = BeautifulSoup(response.text, 'html.parser')
-    results = soup.find_all('div', class_='meaning')
 
     # TODO: Limit does not work when set to 0
     for index,meaning in enumerate(soup.find_all('div', class_='meaning')):
@@ -31,6 +30,12 @@ def lookup(word, limit=0):
             break
         result.append(meaning.get_text())
 
-    # TODO: This is incorrect - fix.
-    print(result)
-    print(f'Returned {limit} results')
+    return result
+
+
+if __name__ == '__main__':
+    urbanize_me = lookup('python', 3)
+
+    for meaning in urbanize_me:
+        print(meaning)
+        print(' - - - -')
