@@ -2,6 +2,13 @@ from bs4 import BeautifulSoup
 import requests
 
 
+def url_to_soup(url):
+    response = requests.get(url)
+    # If we encounter a 4xx, or 5xx response code something went wrong
+    # Raise an exception. Let the caller determine how to handle it.
+    response.raise_for_status()
+    return BeautifulSoup(response.text, 'html.parser')
+
 def urban_dictionary(word, limit=0):
     '''
     Return a list of definitions of 'word' from UrbanDictionary,
@@ -15,16 +22,8 @@ def urban_dictionary(word, limit=0):
     There is no safety-check on input. Use with caution. Can this even
     be exploited? Figure that out.
     '''
-    url = f'https://www.urbandictionary.com/define.php?term={word}'
-    response = requests.get(url)
     result = []
-
-    # If we encounter a 4xx, or 5xx response code something went wrong
-    # Raise an exception. Let the caller determine how to handle it.
-    response.raise_for_status()
-
-    # Make some soup, look for meaning within ourself.
-    soup = BeautifulSoup(response.text, 'html.parser')
+    soup = url_to_soup(f'https://www.urbandictionary.com/define.php?term={word}')
     for meaning in soup.find_all('div', class_='meaning', limit=limit):
         result.append(meaning.get_text())
 
@@ -45,15 +44,8 @@ def merriam_webster(word, limit=0):
     be exploited? Figure that out.
 
     '''
-    url = f'http://www.merriam-webster.com/dictionary/{word}'
-    response = requests.get(url)
     result = []
-
-    # If we encounter a 4xx, or 5xx response code something went wrong
-    # Raise an exception. Let the caller determine how to handle it.
-    response.raise_for_status()
-
-    soup = BeautifulSoup(response.text, 'html.parser')
+    soup = url_to_soup(f'http://www.merriam-webster.com/dictionary/{word}')
     for definition in soup.find_all('span', class_='dt', limit=limit):
         result.append(definition.get_text()[2:].capitalize())
 
