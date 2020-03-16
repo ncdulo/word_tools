@@ -1,7 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 
-def lookup(word, limit=0):
+
+def urban_dictionary(word, limit=0):
     '''
     Return a list of definitions of 'word' from UrbanDictionary,
     up to 'limit' results returned. A limit of 0 will return all
@@ -30,12 +31,47 @@ def lookup(word, limit=0):
     return result
 
 
+def merriam_webster(word, limit=0):
+    '''
+    Return a list of definitions of 'word' from Merriam-Webster,
+    up to 'limit' results returned. A limit of 0 will return all
+    results, a negative limit will return the top single result,
+    any other positive integer will return up to that many results.
+
+    Raises exception through 'requests' upon HTTP-related errors.
+    TODO: Document which exceptions
+
+    There is no safety-check on input. Use with caution. Can this even
+    be exploited? Figure that out.
+
+    '''
+    url = f'http://www.merriam-webster.com/dictionary/{word}'
+    response = requests.get(url)
+    result = []
+
+    # If we encounter a 4xx, or 5xx response code something went wrong
+    # Raise an exception. Let the caller determine how to handle it.
+    response.raise_for_status()
+
+    soup = BeautifulSoup(response.text, 'html.parser')
+    for definition in soup.find_all('span', class_='dt', limit=limit):
+        result.append(definition.get_text()[2:].capitalize())
+
+    return result
+
+
 if __name__ == '__main__':
-    urbanize_me = lookup('python', 4)
+    # Define a helper function to test each lookup function
+    def test_lookup(func, word, limit):
+        print(func.__name__)
+        result = func(word, limit)
+        total = len(result)
+        for value in result:
+            print(value)
+            print('----')
+        print(f'{total} results ({word}, {limit})')
 
-    total = len(urbanize_me)
-    for meaning in urbanize_me:
-        print(meaning)
-        print(' - - - -')
-
-    print(f'Returned {total} results')
+    # Test the lookup functions using the above. Good work.
+    test_lookup(urban_dictionary, 'python', 2)
+    print('') # Newline
+    test_lookup(merriam_webster, 'python', 2)
