@@ -1,6 +1,6 @@
 import click
 
-import word_tools.lookup as wt_look
+from word_tools import lookup
 
 
 def display_results(results):
@@ -13,7 +13,7 @@ def display_results(results):
 @click.argument('word')
 @click.argument('limit', default=0)
 def lookup_merriam(word, limit):
-    results = wt_look.merriam_webster(word, limit)
+    results = lookup.merriam_webster(word, limit)
     display_results(results)
 
 
@@ -21,7 +21,7 @@ def lookup_merriam(word, limit):
 @click.argument('word')
 @click.argument('limit', default=0)
 def lookup_urban(word, limit):
-    results = wt_look.urban_dictionary(word, limit)
+    results = lookup.urban_dictionary(word, limit)
     display_results(results)
 
 
