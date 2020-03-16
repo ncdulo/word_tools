@@ -11,6 +11,7 @@ setup(
         ],
         entry_points = {
                 'console_scripts':
-                    ['wt.urban=word_tools.cli.cli:lookup_urban'],
+                    ['wt.urban=word_tools.cli.cli:lookup_urban',
+                    'wt.merriam=word_tools.cli.cli:lookup_merriam'],
             }
     )

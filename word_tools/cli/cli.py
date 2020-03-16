@@ -9,6 +9,9 @@ def display_results(results):
         print(f'{index}: {result}')
 
 
+@click.command()
+@click.argument('word')
+@click.argument('limit', default=0)
 def lookup_merriam(word, limit):
     results = wt_look.merriam_webster(word, limit)
     display_results(results)
