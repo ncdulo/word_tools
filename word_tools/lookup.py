@@ -22,12 +22,9 @@ def urban_dictionary(word, limit=0):
     There is no safety-check on input. Use with caution. Can this even
     be exploited? Figure that out.
     '''
-    result = []
     soup = url_to_soup(f'https://www.urbandictionary.com/define.php?term={word}')
     for meaning in soup.find_all('div', class_='meaning', limit=limit):
-        result.append(meaning.get_text())
-
-    return result
+        yield meaning.get_text()
 
 
 def merriam_webster(word, limit=0):
@@ -44,12 +41,9 @@ def merriam_webster(word, limit=0):
     be exploited? Figure that out.
 
     '''
-    result = []
     soup = url_to_soup(f'http://www.merriam-webster.com/dictionary/{word}')
     for definition in soup.find_all('span', class_='dt', limit=limit):
-        result.append(definition.get_text()[2:].capitalize())
-
-    return result
+        yield definition.get_text()[2:].capitalize()
 
 
 if __name__ == '__main__':
