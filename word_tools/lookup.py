@@ -11,7 +11,7 @@ def url_to_soup(url):
 
 def urban_dictionary(word, limit=0):
     '''
-    Return a list of definitions of 'word' from UrbanDictionary,
+    Return an iterator over definitions of 'word' from UrbanDictionary,
     up to 'limit' results returned. A limit of 0 will return all
     results, a negative limit will return the top single result,
     any other positive integer will return up to that many results.
@@ -29,7 +29,7 @@ def urban_dictionary(word, limit=0):
 
 def merriam_webster(word, limit=0):
     '''
-    Return a list of definitions of 'word' from Merriam-Webster,
+    Return an iterator over definitions of 'word' from Merriam-Webster,
     up to 'limit' results returned. A limit of 0 will return all
     results, a negative limit will return the top single result,
     any other positive integer will return up to that many results.
