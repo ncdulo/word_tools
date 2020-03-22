@@ -8,6 +8,7 @@ setup(
         install_requires=[
             'requests',
             'click',
+            'bs4',
         ],
         entry_points = {
                 'console_scripts':
