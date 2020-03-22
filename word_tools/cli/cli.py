@@ -24,6 +24,13 @@ def lookup_urban(word, limit):
     results = lookup.urban_dictionary(word, limit)
     display_results(results)
 
+@click.command()
+@click.argument('word')
+@click.argument('limit', default=0)
+def lookup_wikipedia(word, limit):
+    results = lookup.wikipedia(word, limit)
+    display_results(results)
+
 
 def main():
     lookup_urban('python', 2)
