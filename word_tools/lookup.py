@@ -63,8 +63,8 @@ def wikipedia(word, limit=0):
     soup = url_to_soup(
             f'http://en.wikipedia.org/w/index.php?search={word}&fulltext=1&ns0=1')
     for result in soup.find_all('li', class_='mw-search-result', limit=limit):
-        url = result.findAll('a')
-        text = result.get_text()
+        url = f"http://en.wikipedia.org{result.find('a')['href']}"
+        text = result.find('div', class_='searchresult').get_text()
         yield (url,text)
 
 if __name__ == '__main__':
