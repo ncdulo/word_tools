@@ -17,18 +17,18 @@ def test_url_to_soup():
 
 def test_url_to_soup_failure():
     '''
-    Assert that url_to_soup fails when given known to be bad URLs.
+    Assert that url_to_soup throws an HTTPError when returning a bad request.
     '''
-    urls = {
-            'https://httpstat.us/401': '401',  # Unauthorized
-            'https://httpstat.us/404': '404',  # Not Found
-            'https://httpstat.us/503': '503',  # Service Unavailable
-        }
+    urls = [
+            'https://httpstat.us/401',  # Unauthorized
+            'https://httpstat.us/404',  # Not Found
+            'https://httpstat.us/503',  # Service Unavailable
+        ]
 
-    for url,status in urls.items():
-        with pytest.raises(requests.HTTPError) as e:
-            requests.get(url).raise_for_status()
-        assert status in str(e.value)
+    for url in urls:
+        pytest.raises(requests.HTTPError,
+                lookup.url_to_soup,
+                url)
 
 
 def test_urban_dictionary():
