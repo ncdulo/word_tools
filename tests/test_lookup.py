@@ -51,11 +51,29 @@ def test_merriam_webster():
     '''
     Assert we recieve valid results from Merriam-Webster's Dictionary.
     '''
-    assert 1 == 0
+    words = {
+            'python': [2, 'constricting', 'wrapping',],
+            'functional': [3, 'connected', 'organic', 'development',],
+            'hacker': [1, 'One that hacks',],
+        }
+
+    for word,fragments in words.items():
+        results = lookup.merriam_webster(word, fragments[0])
+        for index,result in enumerate(results,start=1):
+            assert fragments[index] in result
 
 
 def test_wikipedia():
     '''
     Assert we recieve valid results from Wikipedia.
     '''
-    assert 1 == 0
+    words = {
+            'python': [2, 'Guido', 'sketch comedy',],
+            'vim': [3, 'Bill Joy', 'Vimentin', 'VIM Airlines',],
+            'linux': [1, 'open source Unix-like operating system',],
+        }
+
+    for word,fragments in words.items():
+        results = lookup.wikipedia(word, fragments[0])
+        for index,result in enumerate(results,start=1):
+            assert fragments[index] in result[1]
