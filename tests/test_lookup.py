@@ -35,7 +35,16 @@ def test_urban_dictionary():
     '''
     Assert we recieve valid results from Urban Dictionary.
     '''
-    assert 1 == 0
+    words = {
+            'phate': [2, 'Gosu', 'predetermines',],
+            'python': [3, 'interpreted', 'algorithms', 'Hogan',],
+            'unit test': [1, 'package',],
+        }
+
+    for word,fragments in words.items():
+        results = lookup.urban_dictionary(word, fragments[0])
+        for index,result in enumerate(results,start=1):
+            assert fragments[index] in result
 
 
 def test_merriam_webster():
