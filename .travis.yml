@@ -11,9 +11,14 @@ before_install:
         - pip install -U pytest
         - pip install pytest-cov
         - pip install codecov
+
+# Install our program
 install:
         - pip install --editable .
 
 # Command to run tests
 script:
-        pytest --cov-report term-missing --cov=./word_tools ./tests
+        - pytest --cov-report term-missing --cov=./word_tools ./tests
+
+# On success, submit coverage
+after_success: codecov
