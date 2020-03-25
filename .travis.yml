@@ -1,8 +1,28 @@
 language: python
+# Linux
+dist: xenial
 python:
         - "3.6"         # Currently the default Python on Travis CI
         - "3.7"
         - "3.8"
+
+# Build matrix
+matrix:
+        include:
+                # OSX
+                - name: "Python 3.6.5 running on MacOS 10.13"
+                os: osx
+                osx_image: xcode9.4 # Includes Python 3.6.5
+                language: shell # Python+Mac not officially supported
+                before_install:
+                        - python3 --version
+                        - pip3 install -U pip
+                        - pip3 install -U pytest
+                        - pip3 install pytest-cov
+                        - pip3 install codecov
+                script:
+                        - python3 -m pytest --cov-report term-missing --cov=./word_tools ./tests
+                after_success: python3 -m codecov
 
 # Install dependencies
 before_install:
