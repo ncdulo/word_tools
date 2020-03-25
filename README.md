@@ -1,4 +1,4 @@
-# word_tools
+# word_tools [![Build Status](https://travis-ci.com/ncdulo/word_tools.svg?branch=master)](https://travis-ci.com/ncdulo/word_tools)
 Utilities for performing actions on words, or collections of words. This is a slowly
 expanding library of functions, conversions, and lookups added to as I see fit.
 Mostly intended for fun, or convenience. Not sure what it will grow into, but it's
