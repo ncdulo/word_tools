@@ -1,0 +1,13 @@
+language: python
+python:
+        - "3.6"         # Currently the default Python on Travis CI
+        - "3.7"
+        - "3.8"
+
+# Install dependencies
+install:
+        - pip install --editable .
+
+# Command to run tests
+script:
+        pytest
