@@ -1,5 +1,7 @@
 from word_tools import transform
 
+import pytest
+
 def test_stoopid_output():
     '''
     Assert stupid provides the proper output
@@ -24,6 +26,17 @@ def test_stoopid_output():
 
 def test_stoopid_bad_input():
     '''
-    Assert stoopid fails when given bad input words
+    Assert stoopid raises a TypeError when given bad input words
     '''
-    pass
+    bad_input = [
+            12345,
+            36.0,
+            ['bad', 'inputs',],
+            {'key': 'value',},
+            (1,'two'),
+        ]
+
+    for arg in bad_input:
+        pytest.raises(TypeError,
+                transform.stoopid,
+                arg)
