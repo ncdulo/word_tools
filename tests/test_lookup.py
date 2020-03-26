@@ -30,6 +30,38 @@ def test_url_to_soup_failure():
                 lookup.url_to_soup,
                 url)
 
+def test_lookup_limit():
+    '''
+    Assert we receive a StopIteration exception when reaching past limit.
+    '''
+    lookup_funcs = {
+            lookup.urban_dictionary: 1,
+            lookup.merriam_webster: 3,
+            lookup.wikipedia: 10,
+        }
+    # TODO: Handle 'limit=0' -- all results to be returned.
+    # I was working to test that case in this commit, but it was proving
+    # to be much harder than I anticipated. One thing we need to account
+    # for in this case -- how many results does the API return per page.
+    # Being that we only grab from the first page of results, we need
+    # to make sure we aren't grabbing more than what's on the page.
+    # Otherwise, the 'limit' wont match real results, and the test will
+    # be invalid.
+
+    # For each function in our list of functions
+    for func,limit in lookup_funcs.items():
+        # Call the function, then loop over it 'limit' times
+        # to ensure we receive a StopIteration on the final call.
+        result = func('python', limit)
+        while limit >= 0:
+            # Check if we have reached the end of 'limit', if so,
+            # grab one more result and ensure we receive StopIteration.
+            if limit == 0:
+                pytest.raises(StopIteration, result.__next__)
+            else:
+                result.__next__()
+            limit = limit - 1
+
 
 def test_urban_dictionary():
     '''
