@@ -30,6 +30,12 @@ def test_url_to_soup_failure():
                 lookup.url_to_soup,
                 url)
 
+def test_lookup_limit():
+    '''
+    Assert we receive a StopIteration exception when reaching past limit.
+    '''
+    assert 1 == 0
+
 
 def test_urban_dictionary():
     '''
