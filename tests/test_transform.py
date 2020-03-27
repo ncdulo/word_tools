@@ -1,6 +1,7 @@
-from word_tools import transform
+import word_tools
 
 import pytest
+
 
 def test_stoopid_output():
     '''
@@ -20,7 +21,7 @@ def test_stoopid_output():
         )
 
     for word,result in known_values:
-        assert transform.stoopid(word) == result
+        assert word_tools.stoopid(word) == result
     # TODO: This should also check functionality of the `extra` output.
 
 
@@ -38,5 +39,5 @@ def test_stoopid_bad_input():
 
     for arg in bad_input:
         pytest.raises(TypeError,
-                transform.stoopid,
+                word_tools.stoopid,
                 arg)
