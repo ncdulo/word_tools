@@ -100,7 +100,7 @@ def test_wikipedia():
     Assert we recieve valid results from Wikipedia.
     '''
     words = {
-            'python': [2, 'Guido', 'sketch comedy',],
+            'fraction': [2, 'common usage', 'number of equal parts',],
             'vim': [3, 'Bill Joy', 'Vimentin', 'VIM Airlines',],
             'linux': [1, 'open source Unix-like operating system',],
         }
