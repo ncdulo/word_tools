@@ -32,7 +32,7 @@ setup(
         install_requires=[
             'requests',
             'click',
-            'bs4',
+            'beautifulsoup4',
         ],
         entry_points = {
                 'console_scripts':
