@@ -10,7 +10,7 @@ with open(path.join(cwd, 'README.md'), 'r') as fh:
 setup(
         name='word_tools',
         packages=find_packages(), # What does this do?
-        version='0.0.1',
+        version='0.0.2',
         author='ncdulo',
         license='MIT',
         description='Utilities for performing actions on words, or collections of words.',
