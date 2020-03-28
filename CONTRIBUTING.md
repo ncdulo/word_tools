@@ -3,9 +3,21 @@ Thank you for your interest in contributing to `word_tools`! In order to
 help you contribute, and to help me bring your changes into `word_tools`. I
 ask that you please keep these guidelines in mind when submitting your work.
 
+This document covers far more ground than originally planned. It is meant to
+function as an overview of our standard development process, and guidelines.
+This is not meant to be a solid, strict set of rules to follow. But more an
+introduction and overview of how to best contribute to this project.
+
 #### TODO: How about a table of contents, or directory listing?
 
 ## How do I submit ..?
+
+**Pull request**
+  - The pull request template has not yet been completed. However, I would
+  ask that pull requests be based into topic branches following the suggestions
+  detailed below. Please also include a description of your changes, if they
+  have been tested, and the reasoning behind your changes.
+  - [How to submit a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request)
 
 **Bug report**
   - The suggested format for submitting a bug report is detailed in the issue
@@ -55,6 +67,33 @@ period checks I run.
 Worth noting that I have been considering adding a `flake8` git hook into this
 repoository. That would implement a more strict approach to following Pep 8
 conventions. The idea is still being debated thus discussion is welcome.
+
+### Commit messages
+The commit message is key towards maintaining a complete development history.
+This is something important to me, so I ask that you include at least a
+sentence or two describing the changes. The message doesn't need to break
+everything down line by line. But should provide enough of a summary that
+the commit's purpose can be discerned by reading the `git log` entry.
+
+### Branches
+Taking advantage of git's ability to utilize globbing, and of working with
+branches in general, I try to keep the bulk of work on topic branches. What
+this means is that features, bug fixes, documentation, and just about
+everything else should be committed into a branch. This allows development
+work to remain separate from `master`, and allows for a more complete history
+when looking back in time. It also allows for greater control over how the
+source code is applied, or otherwise worked with.
+
+Most of the topic branches can fall into one of two categories -- features,
+and issues. Thus, I split development up into branches following either
+`feature/*` or `issue/<issue_number>` formats. Minor changes that don't fit
+into a dedicated stage of work may go directly to master. This includes things
+such as README updates, or version number increments. May also include minor
+tweaks or bug fixes to the code that may not warrant opening a full issue on
+GitHub.
+
+If you are working towards a feature, or bug fix, please follow the branch
+naming conventions. This makes work either for everyone involved.
 
 ### Environment setup
 It is currently recommended to use `virtualenvwrapper` for managing your venvs
@@ -118,4 +157,5 @@ word_tools
 ## In conclusion
 I very much appreciate, and thank you for wanting to contribue. And I thank
 for taking the time to read these guidelines. Feel free to fork, contribute,
-or otherwise enjoy this software!
+or otherwise enjoy this software! Much work and care has gone into putting
+`word_tools` together, I hope you can find use in it!
