@@ -1,0 +1,58 @@
+# This workflow handles some basic checks to be run on each push
+# to this repository. This includes any code style checks, or
+# testing (not including Travis CI!) that we may want to automate.
+name: Push Checks
+
+# Controls when the action will run. Triggers the workflow on push events
+# to any branch. Uncomment below to select specific branches.
+on:
+  push:
+    #branches: [ master ]
+
+# The file represents a workflow, which is made up of the jobs below.
+# Jobs can run sequentially or in parallel. In this case, our first job
+# is named 'code_lint', and uses the latest Ubuntu runner available.
+jobs:
+  code_lint:
+    name: Code Lint
+    runs-on: ubuntu-latest
+
+    # Steps represent the sequence of tasks making up your job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE
+    - uses: actions/checkout@v2
+
+    # Grab the latest minor version Python.
+    # As long as we get Python >= 3.6, it should be fine.
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.6
+
+    # Not really necessary, but I want to ensure we can check the
+    # Python version in the action output.
+    - name: Python version check
+      run: |
+        import sys
+        print(sys.version)
+      shell: python
+
+    # We are only running flake8, therefore we don't need to install
+    # the full word_tools requirements.
+    - name: Install job dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8
+
+    # Run flake8, a failure exit code will cause the workflow to abort
+    # I think, at least.
+    #
+    # Thinking about this more, it may not actually abort the push.
+    # It will probably run as a check and the output shown as pass/fail
+    # to truly abort or refuse a commit, we would use proper git hooks.
+    - name: Lint with flake8
+      run: |
+        # Stop the push if there are Python syntax errors, or undefined names
+        flake8 word_tools tests --count --select=E9,F63,F7,F82 --show-source --statistic
+        # Exit-zero arg treats errors as warnings, so they don't stop the push
+        flake8 word_tools tests --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
