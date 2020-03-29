@@ -1,0 +1,32 @@
+# Pull Request labeler configuration
+# Not to be confused with `labels.yml` which contains the actual labels
+#
+# Format:
+# [label_name]:
+#   - [file paths/globs]
+
+# Note: There are no rules for the main source files!
+# This is intended, for now. Consideration will be given on how to
+# handle these as we determine how everything is working together.
+# I may set up a generic rule to apply a 'triage' label to everything
+# not labeled by our rules.
+
+documentation:
+  - '*.md' # Begins with a special char (*), so much be in quotes
+  - doc/*
+  - LICENSE
+
+repo:
+  - .github/*
+  - .github/**/*
+  - .gitignore
+  - .travis.yml
+
+tests:
+  - tests/*
+
+packaging:
+  - MANIFEST.in
+  - requirements.txt
+  - requirements_dev.txt
+  - setup.py
