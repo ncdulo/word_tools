@@ -1,0 +1,43 @@
+# Labels listing used with 'micnncim/action-label-syncer'
+#
+# GitHub Default Labels
+#  - Do not modify. If so, they will be modified when the action
+#  runs. Is that what you want?
+- color: d73a4a
+  name: bug
+  description: Something isn't working
+- color: cfd3d7
+  name: duplicate
+  description: This issue or pull request already exists
+- color: a2eeef
+  name: enhancement
+  description: New feature or request
+- color: 7057ff
+  name: good first issue
+  description: Good for newcomers
+- color: 008672
+  name: help wanted
+  description: Extra attention is needed
+- color: e4e669
+  name: invalid
+  description: This doesn't seem right
+- color: d876e3
+  name: question
+  description: Further information is requested
+- color: ffffff
+  name: wontfix
+  description: This will not be worked on
+
+# Extra labels, common
+#  - Things added by me, common to all projects
+- color: a2ed89
+  name: discussion
+  description: Speak your mind
+- color: 0075ca
+  name: documentation
+  description: Improvements or additions to documentation
+
+# Project specific labels
+#  - Is there a way to pull in an external file here?
+#  - Might be a helpful way to add project specifics without updating
+#  this file directly.
