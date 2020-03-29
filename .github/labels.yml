@@ -36,13 +36,13 @@
 - color: 0075ca
   name: documentation
   description: Improvements or additions to documentation
-- color: e8aa74
+- color: edbc91
   name: tests
   description: Related to unit tests, integration tests, and the like
-- color: 99dde8
+- color: cc5620
   name: repo
   description: Repository-related such as actions, or other Git-related things
-- color: e5d35e
+- color: aca1dd
   name: packaging
   description: Packaging, and distribution
 
