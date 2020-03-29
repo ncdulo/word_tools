@@ -27,15 +27,7 @@ jobs:
     - name: Set up Python 3.x
       uses: actions/setup-python@v1
       with:
-        python-version: 3.6
-
-    # Not really necessary, but I want to ensure we can check the
-    # Python version in the action output.
-    - name: Python version check
-      run: |
-        import sys
-        print(sys.version)
-      shell: python
+        python-version: '3.x'
 
     # We are only running flake8, therefore we don't need to install
     # the full word_tools requirements.
