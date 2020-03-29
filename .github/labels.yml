@@ -41,7 +41,10 @@
   description: Related to unit tests, integration tests, and the like
 - color: 99dde8
   name: repo
-  description: Repository-related such as actions, contrib guidelines, etc
+  description: Repository-related such as actions, or other Git-related things
+- color: e5d35e
+  name: packaging
+  description: Packaging, and distribution
 
 # Project specific labels
 #  - Is there a way to pull in an external file here?
