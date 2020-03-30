@@ -1,0 +1,20 @@
+# GitHub action to automatically label pull requests based on
+# a set of rules defined in `.github/labeler.yml`
+#
+# This will run as a cronjob instead of per PR received. This is
+# due to limitations with GitHub and not having write access when
+# the action is executed from a fork of this repo.
+name: Periodic Labeler
+on:
+  schedule:
+    # Run every 12 hours. Tweak this to taste.
+    - cron: '* */12 * * *'
+jobs:
+  pull_request_labels:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: paulfantom/periodic-labeler@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          LABEL_MAPPINGS_FILE: .github/labeler.yml

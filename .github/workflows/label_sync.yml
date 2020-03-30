@@ -1,0 +1,26 @@
+# This workflow will be run on each push as a means to automatically
+# keep our desired Issue Labels to GitHub.
+#
+# Allows us to maintain a yml file of labels inside the repo, which
+# provides us the ability to easily transfer them to other projects,
+# and to automatically keep them in-sync should I accidentally change
+# something via the web interface and want it back.
+name: Label Synchronizer
+on:
+  push:
+    # Uncommenting below will prevent this action from running
+    # if the path listed below is the only file updated by this push.
+    #paths-ignore:
+    #  - ".github/labels.yml"
+
+jobs:
+  sync_labels:
+    name: Sync Labels
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: micnncim/action-label-syncer@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          manifest: .github/labels.yml
