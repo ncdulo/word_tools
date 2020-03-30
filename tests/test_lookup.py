@@ -96,6 +96,13 @@ def test_merriam_webster():
             assert fragments[index] in result
 
 
+# Issue #2 -- intermittent failure when wikipedia search results re-order
+# This will extend to the other lookup providers above, should their
+# results re-order as well.
+#
+# Planned fix is pending a refactor of `word_tools.lookup`, and re-write
+# of this test.
+@pytest.mark.xfail()
 def test_wikipedia():
     '''
     Assert we recieve valid results from Wikipedia.
