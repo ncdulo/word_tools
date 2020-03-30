@@ -12,7 +12,7 @@ def test_url_to_soup():
     '''
     url = 'http://www.google.com/'
     assert (lookup.url_to_soup(url)).__class__ == \
-            (BeautifulSoup(requests.get(url).text, 'html.parser')).__class__
+           (BeautifulSoup(requests.get(url).text, 'html.parser')).__class__
 
 
 def test_url_to_soup_failure():
@@ -27,8 +27,9 @@ def test_url_to_soup_failure():
 
     for url in urls:
         pytest.raises(requests.HTTPError,
-                lookup.url_to_soup,
-                url)
+                      lookup.url_to_soup,
+                      url)
+
 
 def test_lookup_limit():
     '''
@@ -49,7 +50,7 @@ def test_lookup_limit():
     # be invalid.
 
     # For each function in our list of functions
-    for func,limit in lookup_funcs.items():
+    for func, limit in lookup_funcs.items():
         # Call the function, then loop over it 'limit' times
         # to ensure we receive a StopIteration on the final call.
         result = func('python', limit)
@@ -68,14 +69,14 @@ def test_urban_dictionary():
     Assert we recieve valid results from Urban Dictionary.
     '''
     words = {
-            'phate': [2, 'Gosu', 'predetermines',],
-            'python': [3, 'interpreted', 'algorithms', 'Hogan',],
-            'unit test': [1, 'package',],
+            'phate': [2, 'Gosu', 'predetermines', ],
+            'python': [3, 'interpreted', 'algorithms', 'Hogan', ],
+            'unit test': [1, 'package', ],
         }
 
-    for word,fragments in words.items():
+    for word, fragments in words.items():
         results = lookup.urban_dictionary(word, fragments[0])
-        for index,result in enumerate(results,start=1):
+        for index, result in enumerate(results, start=1):
             assert fragments[index] in result
 
 
@@ -84,14 +85,14 @@ def test_merriam_webster():
     Assert we recieve valid results from Merriam-Webster's Dictionary.
     '''
     words = {
-            'python': [2, 'constricting', 'wrapping',],
-            'functional': [3, 'connected', 'organic', 'development',],
-            'hacker': [1, 'One that hacks',],
+            'python': [2, 'constricting', 'wrapping', ],
+            'functional': [3, 'connected', 'organic', 'development', ],
+            'hacker': [1, 'One that hacks', ],
         }
 
-    for word,fragments in words.items():
+    for word, fragments in words.items():
         results = lookup.merriam_webster(word, fragments[0])
-        for index,result in enumerate(results,start=1):
+        for index, result in enumerate(results, start=1):
             assert fragments[index] in result
 
 
@@ -100,12 +101,12 @@ def test_wikipedia():
     Assert we recieve valid results from Wikipedia.
     '''
     words = {
-            'fraction': [2, 'common usage', 'number of equal parts',],
-            'vim': [3, 'Bill Joy', 'Vimentin', 'VIM Airlines',],
-            'linux': [1, 'open source Unix-like operating system',],
+            'fraction': [2, 'common usage', 'number of equal parts', ],
+            'vim': [3, 'Bill Joy', 'Vimentin', 'VIM Airlines', ],
+            'linux': [1, 'open source Unix-like operating system', ],
         }
 
-    for word,fragments in words.items():
+    for word, fragments in words.items():
         results = lookup.wikipedia(word, fragments[0])
-        for index,result in enumerate(results,start=1):
+        for index, result in enumerate(results, start=1):
             assert fragments[index] in result[1]

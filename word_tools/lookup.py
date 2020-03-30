@@ -9,6 +9,7 @@ def url_to_soup(url):
     response.raise_for_status()
     return BeautifulSoup(response.text, 'html.parser')
 
+
 def urban_dictionary(word, limit=0):
     '''
     Return an iterator over definitions of 'word' from UrbanDictionary,
@@ -65,7 +66,8 @@ def wikipedia(word, limit=0):
     for result in soup.find_all('li', class_='mw-search-result', limit=limit):
         url = f"http://en.wikipedia.org{result.find('a')['href']}"
         text = result.find('div', class_='searchresult').get_text()
-        yield (url,text)
+        yield (url, text)
+
 
 if __name__ == '__main__':
     # Define a helper function to test each lookup function

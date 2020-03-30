@@ -4,6 +4,7 @@
 
 import word_tools
 
+
 def test_true():
     """Test if True is truthy."""
     assert True
