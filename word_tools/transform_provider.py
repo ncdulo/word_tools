@@ -1,6 +1,6 @@
 from .generic_provider import GenericProvider
 
-from abc import ABCMeta, abstractmethod
+from abc import abstractmethod
 
 
 class TransformProvider(GenericProvider):

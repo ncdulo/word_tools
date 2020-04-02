@@ -38,11 +38,11 @@ def test_lookup_limit():
     '''
     urban = word_tools.lookup.get('urbandictionary')
     merriam = word_tools.lookup.get('merriamwebster')
-    #wikipedia = word_tools.lookup.get('wikipedia')
+    # wikipedia = word_tools.lookup.get('wikipedia')
     lookup_funcs = {
             urban.lookup: 1,
             merriam.lookup: 3,
-            #wikipedia.lookup: 10,
+            # wikipedia.lookup: 10,
         }
     # TODO: Handle 'limit=0' -- all results to be returned.
     # I was working to test that case in this commit, but it was proving

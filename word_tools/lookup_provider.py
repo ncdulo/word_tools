@@ -1,9 +1,9 @@
 from .generic_provider import GenericProvider
 
-from abc import ABCMeta, abstractmethod
-
+from abc import abstractmethod
 from bs4 import BeautifulSoup
 import requests
+
 
 class LookupProvider(GenericProvider):
     '''Provides an interface to be implemented by the concrete providers.

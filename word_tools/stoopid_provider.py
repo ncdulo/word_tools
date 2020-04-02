@@ -25,6 +25,7 @@ class StoopidProvider(TransformProvider):
 
         return new_word
 
+
 class StoopidBuilder():
     '''Builder class which maintains a single instance of `StoopidProvider`,
     returning it when called, creating it if necessary.
