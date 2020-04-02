@@ -1,4 +1,4 @@
-from word_tools import lookup
+from word_tools.lookup_provider import LookupProvider
 
 from bs4 import BeautifulSoup
 import requests
@@ -10,8 +10,9 @@ def test_url_to_soup():
     '''
     Assert that when given a url, we receive soup.
     '''
+    provider = LookupProvider()
     url = 'http://www.google.com/'
-    assert (lookup.url_to_soup(url)).__class__ == \
+    assert (provider.url_to_soup(url)).__class__ == \
            (BeautifulSoup(requests.get(url).text, 'html.parser')).__class__
 
 
@@ -24,10 +25,10 @@ def test_url_to_soup_failure():
             'https://httpstat.us/404',  # Not Found
             'https://httpstat.us/503',  # Service Unavailable
         ]
-
+    provider = LookupProvider()
     for url in urls:
         pytest.raises(requests.HTTPError,
-                      lookup.url_to_soup,
+                      provider.url_to_soup,
                       url)
 
 
