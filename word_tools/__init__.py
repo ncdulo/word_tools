@@ -3,15 +3,16 @@
 # namespace here, or run any initialization code that may
 # be required.
 
-from .generic_provider import GenericProvider
+from .lookup_provider import LookupProvider
+from .transform_provider import TransformProvider
 from .urban_provider import UrbanBuilder
 from .merriam_provider import MerriamBuilder
 from .stoopid_provider import StoopidBuilder
 
 
-lookup = GenericProvider()
+lookup = LookupProvider()
 lookup.register_provider('MerriamWebster', MerriamBuilder())
 lookup.register_provider('UrbanDictionary', UrbanBuilder())
 
-transform = GenericProvider()
+transform = TransformProvider()
 transform.register_provider('Stoopid', StoopidBuilder())
