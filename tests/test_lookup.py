@@ -36,10 +36,13 @@ def test_lookup_limit():
     '''
     Assert we receive a StopIteration exception when reaching past limit.
     '''
+    urban = word_tools.lookup.get('urbandictionary')
+    merriam = word_tools.lookup.get('merriamwebster')
+    #wikipedia = word_tools.lookup.get('wikipedia')
     lookup_funcs = {
-            lookup.urban_dictionary: 1,
-            lookup.merriam_webster: 3,
-            lookup.wikipedia: 10,
+            urban.lookup: 1,
+            merriam.lookup: 3,
+            #wikipedia.lookup: 10,
         }
     # TODO: Handle 'limit=0' -- all results to be returned.
     # I was working to test that case in this commit, but it was proving
