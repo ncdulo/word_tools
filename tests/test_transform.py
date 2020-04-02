@@ -19,9 +19,9 @@ def test_stoopid_output():
             ('install gentoo.', 'InStAlL GeNtOo.'),
             ('Punc-tu-a-tion... Test!', 'PuNc-tU-A-TiOn... TeSt!'),
         )
-
+    stoopid = word_tools.transform.get('stoopid')
     for word, result in known_values:
-        assert word_tools.stoopid(word) == result
+        assert stoopid.convert(word) == result
     # TODO: This should also check functionality of the `extra` output.
 
 
@@ -36,8 +36,8 @@ def test_stoopid_bad_input():
             {'key': 'value', },
             (1, 'two'),
         ]
-
+    stoopid = word_tools.transform.get('stoopid')
     for arg in bad_input:
         pytest.raises(TypeError,
-                      word_tools.stoopid,
+                      stoopid.convert,
                       arg)
