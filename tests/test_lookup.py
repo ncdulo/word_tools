@@ -72,6 +72,7 @@ def test_urban_dictionary():
     '''
     Assert we recieve valid results from Urban Dictionary.
     '''
+    urban = word_tools.lookup.get('urbandictionary')
     words = {
             'phate': [2, 'Gosu', 'predetermines', ],
             'python': [3, 'interpreted', 'algorithms', 'Hogan', ],
@@ -79,7 +80,7 @@ def test_urban_dictionary():
         }
 
     for word, fragments in words.items():
-        results = lookup.urban_dictionary(word, fragments[0])
+        results = urban.lookup(word, fragments[0])
         for index, result in enumerate(results, start=1):
             assert fragments[index] in result
 
@@ -88,6 +89,7 @@ def test_merriam_webster():
     '''
     Assert we recieve valid results from Merriam-Webster's Dictionary.
     '''
+    merriam = word_tools.lookup.get('merriamwebster')
     words = {
             'python': [2, 'constricting', 'wrapping', ],
             'functional': [3, 'connected', 'organic', 'development', ],
@@ -95,7 +97,7 @@ def test_merriam_webster():
         }
 
     for word, fragments in words.items():
-        results = lookup.merriam_webster(word, fragments[0])
+        results = merriam.lookup(word, fragments[0])
         for index, result in enumerate(results, start=1):
             assert fragments[index] in result
 
@@ -111,6 +113,7 @@ def test_wikipedia():
     '''
     Assert we recieve valid results from Wikipedia.
     '''
+    wiki = word_tools.lookup.get('wikipedia')
     words = {
             'fraction': [2, 'common usage', 'number of equal parts', ],
             'vim': [3, 'Bill Joy', 'Vimentin', 'VIM Airlines', ],
@@ -118,6 +121,6 @@ def test_wikipedia():
         }
 
     for word, fragments in words.items():
-        results = lookup.wikipedia(word, fragments[0])
+        results = wiki.lookup(word, fragments[0])
         for index, result in enumerate(results, start=1):
             assert fragments[index] in result[1]
