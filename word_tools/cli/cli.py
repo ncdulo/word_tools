@@ -41,7 +41,8 @@ def lookup_wikipedia(word, limit):
 # TODO: Properly implement extra-stoopid mode.
 # @click.argument('extra', default=None)
 def transform_stoopid(word):
-    print(word_tools.stoopid(word))
+    stoopid = word_tools.transform.get('stoopid')
+    print(stoopid.convert(word))
 
 
 def main():
