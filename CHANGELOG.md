@@ -1,6 +1,6 @@
 # Changelog
 
-## [v0.0.2](https://github.com/ncdulo/word_tools/tree/v0.0.1) (2020-04-02)
+## [v0.0.2](https://github.com/ncdulo/word_tools/tree/v0.0.2) (2020-04-02)
 
 [Full Changelog](https://github.com/ncdulo/word_tools/compare/v0.0.1...v0.0.2)
 
