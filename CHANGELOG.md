@@ -1,10 +1,25 @@
 # Changelog
 
-## [v0.0.1](https://github.com/ncdulo/word_tools/tree/v0.0.1)
+## [v0.0.2](https://github.com/ncdulo/word_tools/tree/v0.0.1) (2020-04-02)
+
+[Full Changelog](https://github.com/ncdulo/word_tools/compare/v0.0.1...v0.0.2)
+
+**Implemented enhancements:**
+
+- \[Feature Request\] Refactor `lookup` to use a factory pattern [\#7](https://github.com/ncdulo/word_tools/issues/7)
+- Issue \#7 - Implement basic factory/provider pattern [\#8](https://github.com/ncdulo/word_tools/pull/8) ([ncdulo](https://github.com/ncdulo))
+- Automate the boring stuff with.. GitHub! [\#4](https://github.com/ncdulo/word_tools/pull/4) ([ncdulo](https://github.com/ncdulo))
+
+**Closed issues:**
+
+- Certain issue label colors are too similar [\#6](https://github.com/ncdulo/word_tools/issues/6)
+
+## [v0.0.1](https://github.com/ncdulo/word_tools/tree/v0.0.1) (2020-03-28)
 
 [Full Changelog](https://github.com/ncdulo/word_tools/compare/549f75ba04ffa9f64d8d0faa35a1324f2953970e...v0.0.1)
 
 **Implemented enhancements:**
+
 - Prepare for PyPi release [\#3](https://github.com/ncdulo/word_tools/pull/3) ([ncdulo](https://github.com/ncdulo))
 - `transform.stoopid` method [\#1](https://github.com/ncdulo/word_tools/pull/1) ([ncdulo](https://github.com/ncdulo))
 
