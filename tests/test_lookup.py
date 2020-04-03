@@ -1,4 +1,4 @@
-from word_tools import lookup
+import word_tools
 
 from bs4 import BeautifulSoup
 import requests
@@ -10,8 +10,9 @@ def test_url_to_soup():
     '''
     Assert that when given a url, we receive soup.
     '''
+    provider = word_tools.LookupProvider()
     url = 'http://www.google.com/'
-    assert (lookup.url_to_soup(url)).__class__ == \
+    assert (provider.url_to_soup(url)).__class__ == \
            (BeautifulSoup(requests.get(url).text, 'html.parser')).__class__
 
 
@@ -24,10 +25,10 @@ def test_url_to_soup_failure():
             'https://httpstat.us/404',  # Not Found
             'https://httpstat.us/503',  # Service Unavailable
         ]
-
+    provider = word_tools.LookupProvider()
     for url in urls:
         pytest.raises(requests.HTTPError,
-                      lookup.url_to_soup,
+                      provider.url_to_soup,
                       url)
 
 
@@ -35,10 +36,13 @@ def test_lookup_limit():
     '''
     Assert we receive a StopIteration exception when reaching past limit.
     '''
+    urban = word_tools.lookup.get('urbandictionary')
+    merriam = word_tools.lookup.get('merriamwebster')
+    # wikipedia = word_tools.lookup.get('wikipedia')
     lookup_funcs = {
-            lookup.urban_dictionary: 1,
-            lookup.merriam_webster: 3,
-            lookup.wikipedia: 10,
+            urban.lookup: 1,
+            merriam.lookup: 3,
+            # wikipedia.lookup: 10,
         }
     # TODO: Handle 'limit=0' -- all results to be returned.
     # I was working to test that case in this commit, but it was proving
@@ -68,6 +72,7 @@ def test_urban_dictionary():
     '''
     Assert we recieve valid results from Urban Dictionary.
     '''
+    urban = word_tools.lookup.get('urbandictionary')
     words = {
             'phate': [2, 'Gosu', 'predetermines', ],
             'python': [3, 'interpreted', 'algorithms', 'Hogan', ],
@@ -75,7 +80,7 @@ def test_urban_dictionary():
         }
 
     for word, fragments in words.items():
-        results = lookup.urban_dictionary(word, fragments[0])
+        results = urban.lookup(word, fragments[0])
         for index, result in enumerate(results, start=1):
             assert fragments[index] in result
 
@@ -84,6 +89,7 @@ def test_merriam_webster():
     '''
     Assert we recieve valid results from Merriam-Webster's Dictionary.
     '''
+    merriam = word_tools.lookup.get('merriamwebster')
     words = {
             'python': [2, 'constricting', 'wrapping', ],
             'functional': [3, 'connected', 'organic', 'development', ],
@@ -91,7 +97,7 @@ def test_merriam_webster():
         }
 
     for word, fragments in words.items():
-        results = lookup.merriam_webster(word, fragments[0])
+        results = merriam.lookup(word, fragments[0])
         for index, result in enumerate(results, start=1):
             assert fragments[index] in result
 
@@ -107,6 +113,7 @@ def test_wikipedia():
     '''
     Assert we recieve valid results from Wikipedia.
     '''
+    wiki = word_tools.lookup.get('wikipedia')
     words = {
             'fraction': [2, 'common usage', 'number of equal parts', ],
             'vim': [3, 'Bill Joy', 'Vimentin', 'VIM Airlines', ],
@@ -114,6 +121,6 @@ def test_wikipedia():
         }
 
     for word, fragments in words.items():
-        results = lookup.wikipedia(word, fragments[0])
+        results = wiki.lookup(word, fragments[0])
         for index, result in enumerate(results, start=1):
             assert fragments[index] in result[1]
