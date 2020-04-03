@@ -34,6 +34,7 @@ from .lookup_provider import LookupProvider
 from .transform_provider import TransformProvider
 from .urban_provider import UrbanBuilder
 from .merriam_provider import MerriamBuilder
+from .wiki_provider import WikiBuilder
 from .stoopid_provider import StoopidBuilder
 
 
@@ -44,6 +45,7 @@ from .stoopid_provider import StoopidBuilder
 lookup = LookupProvider()
 lookup.register_provider('MerriamWebster', MerriamBuilder())
 lookup.register_provider('UrbanDictionary', UrbanBuilder())
+lookup.register_provider('Wikipedia', WikiBuilder())
 
 transform = TransformProvider()
 transform.register_provider('Stoopid', StoopidBuilder())
