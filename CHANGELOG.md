@@ -14,6 +14,9 @@
 
 - Certain issue label colors are too similar [\#6](https://github.com/ncdulo/word_tools/issues/6)
 
+**Known issues:**
+- `wt.wikipedia` no longer works. Parts of this update broke the function, and having found a better long term solution, I have put off re-writing until I can get that solution fully fleshed out. Wiki will be returning shortly, just not this moment. Some details may be glanced over in [\#2](https://github.com/ncdulo/word_tools/issues/2)
+
 ## [v0.0.1](https://github.com/ncdulo/word_tools/tree/v0.0.1) (2020-03-28)
 
 [Full Changelog](https://github.com/ncdulo/word_tools/compare/549f75ba04ffa9f64d8d0faa35a1324f2953970e...v0.0.1)
