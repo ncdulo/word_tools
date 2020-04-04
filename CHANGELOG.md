@@ -1,8 +1,20 @@
 # Changelog
 
+## [v0.2.0](https://github.com/ncdulo/word_tools/tree/v0.2.0) (2020-04-04)
+
+[Full Changelog](https://github.com/ncdulo/word_tools/compare/v0.0.2...v0.2.0), [PyPi](https://pypi.org/project/word-tools/0.2.0/)
+
+**Implemented enhancements:**
+
+- Redesigned `WikiProvider` [\#10](https://github.com/ncdulo/word_tools/pull/10) ([ncdulo](https://github.com/ncdulo))
+
+**Fixed bugs:**
+
+- `test\_wikipedia` fails intermittently. [\#2](https://github.com/ncdulo/word_tools/issues/2)
+
 ## [v0.0.2](https://github.com/ncdulo/word_tools/tree/v0.0.2) (2020-04-02)
 
-[Full Changelog](https://github.com/ncdulo/word_tools/compare/v0.0.1...v0.0.2)
+[Full Changelog](https://github.com/ncdulo/word_tools/compare/v0.0.1...v0.0.2), [PyPi](https://pypi.org/project/word-tools/0.0.2/)
 
 **Implemented enhancements:**
 
@@ -19,7 +31,7 @@
 
 ## [v0.0.1](https://github.com/ncdulo/word_tools/tree/v0.0.1) (2020-03-28)
 
-[Full Changelog](https://github.com/ncdulo/word_tools/compare/549f75ba04ffa9f64d8d0faa35a1324f2953970e...v0.0.1)
+[Full Changelog](https://github.com/ncdulo/word_tools/compare/549f75ba04ffa9f64d8d0faa35a1324f2953970e...v0.0.1), [PyPi](https://pypi.org/project/word-tools/0.0.1/)
 
 **Implemented enhancements:**
 
