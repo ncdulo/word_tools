@@ -102,25 +102,39 @@ def test_merriam_webster():
             assert fragments[index] in result
 
 
-# Issue #2 -- intermittent failure when wikipedia search results re-order
-# This will extend to the other lookup providers above, should their
-# results re-order as well.
-#
-# Planned fix is pending a refactor of `word_tools.lookup`, and re-write
-# of this test.
-@pytest.mark.xfail()
 def test_wikipedia():
     '''
-    Assert we recieve valid results from Wikipedia.
+    Assert we recieve results from Wikipedia. The core `pymediawiki` module
+    has it's own test suite. We do not need to re-test. We are only checking
+    that each result returned contains the search word.
     '''
     wiki = word_tools.lookup.get('wikipedia')
-    words = {
-            'fraction': [2, 'common usage', 'number of equal parts', ],
-            'vim': [3, 'Bill Joy', 'Vimentin', 'VIM Airlines', ],
-            'linux': [1, 'open source Unix-like operating system', ],
-        }
+    words = [
+            'vim',
+            'linux',
+            'python',
+        ]
 
-    for word, fragments in words.items():
-        results = wiki.lookup(word, fragments[0])
-        for index, result in enumerate(results, start=1):
-            assert fragments[index] in result[1]
+    for word in words:
+        results = wiki.lookup(word)
+        for result in results:
+            assert word in result.lower()
+
+
+def test_wikipedia_disambiguation():
+    '''
+    Assert we recieve a Disambiguation Error message for known disambiguous
+    pages.
+    '''
+    wiki = word_tools.lookup.get('wikipedia')
+    words = [
+            'fraction',
+            'bash',
+        ]
+    for word in words:
+        # There has to be a better way to do this. We should only receive
+        # a single result when we encounter a disambiguation error. The
+        # inner-most `for` loop can probably be worked out. Somehow.
+        results = wiki.lookup(word)
+        for result in results:
+            assert 'disambiguation' in result.lower()

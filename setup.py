@@ -45,6 +45,7 @@ setup(
             'requests',
             'click',
             'beautifulsoup4',
+            'pymediawiki',
         ],
         entry_points = {
                 'console_scripts':
