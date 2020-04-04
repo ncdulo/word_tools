@@ -2,12 +2,14 @@ from .lookup_provider import LookupProvider
 
 from mediawiki import MediaWiki, exceptions
 
+
 class WikiProvider(LookupProvider):
     '''Concrete provider which provides web results from Wikipedia.
     '''
     def __init__(self):
-        self._wiki = MediaWiki(user_agent= \
-            "word_tools (https://github.com/ncdulo/word_tools")
+        self._wiki = MediaWiki(
+            user_agent="word_tools (https://github.com/ncdulo/word_tools"
+        )
         LookupProvider.__init__(self)
 
     def lookup(self, word, limit=0):
@@ -29,6 +31,7 @@ results are returned. Wikipedia suggests the following page
 names. These may not be correct. This is a known issue.
                 ''')
             print(e)
+
 
 class WikiBuilder:
     '''Builder class which maintains a single instance of `WikiProvider`,
