@@ -31,6 +31,14 @@ def lookup(provider, word, limit):
     provider = word_tools.lookup.get(provider)
     display_results(provider.lookup(word, limit))
 
+@main.command()
+@click.argument('provider')
+@click.argument('word')
+def transform(provider, word):
+    provider = word_tools.transform.get(provider)
+    result = provider.convert(word)
+    print(result)
+
 
 # This isn't really needed. Extra bit of sanity checking.
 if __name__ == '__main__':
