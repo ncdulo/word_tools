@@ -7,15 +7,20 @@ class WikiProvider(LookupProvider):
     '''Concrete provider which provides web results from Wikipedia.
     '''
     def __init__(self):
+        '''Initialize WikiProvider with a MediaWiki instance.
+        '''
         self._wiki = MediaWiki(
             user_agent="word_tools (https://github.com/ncdulo/word_tools"
         )
         LookupProvider.__init__(self)
 
     def lookup(self, word, limit=0):
+        '''Yield str results for `word` up to `limit`. When `limit <= 0`,
+        default to `limit = 3`.
+        '''
         # Default to a limit of three results. Once the re-write of CLI
         # is complete, this should be updated, and likely removed
-        if limit == 0:
+        if limit <= 0:
             limit = 3
 
         try:
