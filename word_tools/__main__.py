@@ -13,25 +13,23 @@ def display_results(results):
         print(f'{index}: {result}')
 
 
-@click.command()
+@click.group()
+def main():
+    # Is there anything we need to do here?
+    # Probably a way to collect the provider, word, limit values
+    # here and pass them along in a context. Or possibly a way to
+    # determine the super-classes of provider to grab the proper
+    # lookup or transform. Advanced stuff, filed under 'someday'.
+    pass
+
+
+@main.command()
 @click.argument('provider')
 @click.argument('word')
-def main(provider, word):
-    # How would we inject custom arguments for unit tests?
-    #if args is None:
-    #    args = sys.argv[1:]
-    print('we got word_tools!')
-    print(f'provider: {provider}')
-    print(f'word: {word}')
-
-    # Differentiate between a lookup or transform, or any other provider
-    # type
-
-    # Create the provider object accordingly
-
-    # Run it's action function (convert/lookup)
-
-    # Loop over result(s)
+@click.argument('limit', default=0)
+def lookup(provider, word, limit):
+    provider = word_tools.lookup.get(provider)
+    display_results(provider.lookup(word, limit))
 
 
 # This isn't really needed. Extra bit of sanity checking.
