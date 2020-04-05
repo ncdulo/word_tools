@@ -13,31 +13,23 @@ def display_results(results):
         print(f'{index}: {result}')
 
 
-@click.group()
-def main():
-    # Is there anything we need to do here?
-    # Probably a way to collect the provider, word, limit values
-    # here and pass them along in a context. Or possibly a way to
-    # determine the super-classes of provider to grab the proper
-    # lookup or transform. Advanced stuff, filed under 'someday'.
-    pass
-
-
-@main.command()
+@click.command()
 @click.argument('provider')
+@click.option('-l', '--limit', default=0, type=int)
 @click.argument('word')
-@click.argument('limit', default=0)
-def lookup(provider, word, limit):
-    provider = word_tools.lookup.get(provider)
-    display_results(provider.lookup(word, limit))
-
-@main.command()
-@click.argument('provider')
-@click.argument('word')
-def transform(provider, word):
-    provider = word_tools.transform.get(provider)
-    result = provider.convert(word)
-    print(result)
+def main(provider, word, limit):
+    # This can be done so much better, I'm sure. Have not determined
+    # exactly how, just yet.
+    try:
+        main_prov = word_tools.lookup.get(provider)
+        display_results(main_prov.lookup(word, limit))
+    except ValueError:
+        try:
+            main_prov = word_tools.transform.get(provider)
+            print(main_prov.convert(word))
+        except ValueError:
+            print(f'Error: provider ({provider}) specified was not found!')
+            print('Please check the spelling and try again.')
 
 
 # This isn't really needed. Extra bit of sanity checking.
