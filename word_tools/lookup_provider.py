@@ -10,6 +10,10 @@ class LookupProvider(GenericProvider):
     This class is not intended to be used directly by the user, but expanded
     upon for adding new providers which scrape web results.
     '''
+
+    # TODO: Below should be a `__call__` so that we can simplify calling
+    # and make the CLI a little easier to work with. Need to put some thought
+    # into how we do this, or if we should do this before making a final call.
     @abstractmethod
     def lookup(self, url, limit):
         '''Abstract method representing the concrete provider's implementation

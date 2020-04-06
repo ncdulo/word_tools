@@ -49,9 +49,7 @@ setup(
         ],
         entry_points = {
                 'console_scripts':
-                    ['wt.urban=word_tools.cli.cli:lookup_urban',
-                    'wt.merriam=word_tools.cli.cli:lookup_merriam',
-                    'wt.wikipedia=word_tools.cli.cli:lookup_wikipedia',
-                    'wt.stoopid=word_tools.cli.cli:transform_stoopid',],
+                    ['wt=word_tools.__main__:main',
+                    ],
             }
     )
