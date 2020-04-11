@@ -8,7 +8,7 @@ function as an overview of our standard development process, and guidelines.
 This is not meant to be a solid, strict set of rules to follow. But more an
 introduction and overview of how to best contribute to this project.
 
-#### TODO: How about a table of contents, or directory listing?
+#### TODO: How about a table of contents?
 
 ## How do I submit ..?
 
@@ -106,11 +106,14 @@ git clone https://github.com/ncdulo/word_tools.git
 cd word_tools
 mkvirtualenv -a /full/path/to/repo word_tools_dev
 
+# From here, onward, you should be working in the virtual environment, of
+# whichever flavor you like
+
 # Update pip and setuptools
 pip install -U pip
 pip install -U setuptools
 
-# Install package (do this in a venv!)
+# Install package
 pip install --editable .
 # To install the same versions as master development environment
 pip install -r requirements_dev.txt
@@ -119,16 +122,16 @@ pip install -r requirements_dev.txt
 
 # Running unit tests
 pip install pytest
-# If you will be testing TravisCI locally
+# If you will be testing TravisCI locally, or want to check code coverage
 pip install pycov codecov
 # If you will be creating packages, or uploading to PyPi
 pip install wheel
 pip install twine
 
-# Executables will be located in..
-/path/to/virtual/env/bin/wt.*
+# Executable will be located in..
+/path/to/virtual/env/bin/wt
 # Default location with virtualenvwrapper is
-~/.virtualenvs/word_tools_dev/wt.*
+~/.virtualenvs/word_tools_dev/wt
 ```
 ### Project structure
 At first glance, things can be a bit confusing or hard to find. Familiarity
@@ -150,7 +153,6 @@ word_tools
 │   └── ISSUE_TEMPLATE
 ├── tests       # Unit tests (and maybe integration tests someday)
 ├── word_tools  # Module sources
-│   └── cli     # CLI submodule
 └── *word_tools.egg-info    # Generated during `pip install`
 ```
 
