@@ -30,7 +30,7 @@ six==1.14.0
 soupsieve==2.0
 tqdm==4.43.0
 twine==3.1.1
-urllib3==1.25.8
+urllib3==1.26.5
 wcwidth==0.1.9
 webencodings==0.5.1
 word-tools-testpkg==0.0.1
